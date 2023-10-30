@@ -95,6 +95,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'login',
           path: '/login',
           builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
+          name: 'AlamatKantorPage',
+          path: '/alamatKantorPage',
+          builder: (context, params) => AlamatKantorPageWidget(),
+        ),
+        FFRoute(
+          name: 'ProdukPage',
+          path: '/produkPage',
+          builder: (context, params) => ProdukPageWidget(),
+        ),
+        FFRoute(
+          name: 'ProfilPage',
+          path: '/profilPage',
+          builder: (context, params) => ProfilPageWidget(),
+        ),
+        FFRoute(
+          name: 'WelcomePage',
+          path: '/welcomePage',
+          builder: (context, params) => WelcomePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
