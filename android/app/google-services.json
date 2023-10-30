@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "29800676935",
+    "firebase_url": "https://kospinsuryakencanaapps-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kospinsuryakencanaapps",
+    "storage_bucket": "kospinsuryakencanaapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29800676935:android:f96a58ead957ad03c43b62",
+        "android_client_info": {
+          "package_name": "com.mycompany.kospinsuryakencanaapps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBfzrONRhpz99-UdItGTRE_I-PcB-4Qsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
