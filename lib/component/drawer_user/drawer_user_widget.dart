@@ -5,18 +5,18 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'drawer_model.dart';
-export 'drawer_model.dart';
+import 'drawer_user_model.dart';
+export 'drawer_user_model.dart';
 
-class DrawerWidget extends StatefulWidget {
-  const DrawerWidget({Key? key}) : super(key: key);
+class DrawerUserWidget extends StatefulWidget {
+  const DrawerUserWidget({Key? key}) : super(key: key);
 
   @override
-  _DrawerWidgetState createState() => _DrawerWidgetState();
+  _DrawerUserWidgetState createState() => _DrawerUserWidgetState();
 }
 
-class _DrawerWidgetState extends State<DrawerWidget> {
-  late DrawerModel _model;
+class _DrawerUserWidgetState extends State<DrawerUserWidget> {
+  late DrawerUserModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +27,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DrawerModel());
+    _model = createModel(context, () => DrawerUserModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -41,6 +41,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: 220.0,
       height: double.infinity,
@@ -101,7 +103,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                await launchURL('https://www.surya-kencana.com/simpanan.html');
+                context.pushNamed('login');
               },
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 150),
@@ -121,24 +123,29 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                         child: Icon(
-                          Icons.menu_book,
-                          color: FlutterFlowTheme.of(context).primaryText,
+                          Icons.person_rounded,
+                          color: FlutterFlowTheme.of(context).primary,
                           size: 20.0,
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Tabel Deposito',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 12.0,
-                                ),
-                          ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Login',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 12.0,
+                                  ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -156,74 +163,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           MouseRegion(
             opaque: false,
             cursor: MouseCursor.defer ?? MouseCursor.defer,
-            child: InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                await launchURL(
-                    'https://www.surya-kencana.com/kalkulator.html#!');
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 150),
-                curve: Curves.easeInOut,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: _model.mouseRegionHovered2!
-                      ? FlutterFlowTheme.of(context).primaryBackground
-                      : FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Icon(
-                          Icons.calculate,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 20.0,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Simulasi KTA',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 12.0,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered2 = true);
-            }),
-            onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered2 = false);
-            }),
-          ),
-          MouseRegion(
-            opaque: false,
-            cursor: MouseCursor.defer ?? MouseCursor.defer,
             child: AnimatedContainer(
               duration: Duration(milliseconds: 150),
               curve: Curves.easeInOut,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: _model.mouseRegionHovered3!
+                color: _model.mouseRegionHovered2!
                     ? FlutterFlowTheme.of(context).primaryBackground
                     : FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -270,10 +215,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered3 = true);
+              setState(() => _model.mouseRegionHovered2 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered3 = false);
+              setState(() => _model.mouseRegionHovered2 = false);
             }),
           ),
           MouseRegion(
@@ -284,7 +229,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               curve: Curves.easeInOut,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: _model.mouseRegionHovered4!
+                color: _model.mouseRegionHovered3!
                     ? FlutterFlowTheme.of(context).primaryBackground
                     : FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -321,10 +266,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered4 = true);
+              setState(() => _model.mouseRegionHovered3 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered4 = false);
+              setState(() => _model.mouseRegionHovered3 = false);
             }),
           ),
           MouseRegion(
@@ -335,7 +280,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               curve: Curves.easeInOut,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: _model.mouseRegionHovered5!
+                color: _model.mouseRegionHovered4!
                     ? FlutterFlowTheme.of(context).primaryBackground
                     : FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -372,10 +317,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered5 = true);
+              setState(() => _model.mouseRegionHovered4 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered5 = false);
+              setState(() => _model.mouseRegionHovered4 = false);
             }),
           ),
           Opacity(
@@ -393,7 +338,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               curve: Curves.easeInOut,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: _model.mouseRegionHovered6!
+                color: _model.mouseRegionHovered5!
                     ? FlutterFlowTheme.of(context).primaryBackground
                     : FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -417,10 +362,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered6 = true);
+              setState(() => _model.mouseRegionHovered5 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered6 = false);
+              setState(() => _model.mouseRegionHovered5 = false);
             }),
           ),
           MouseRegion(
@@ -431,7 +376,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               curve: Curves.easeInOut,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: _model.mouseRegionHovered7!
+                color: _model.mouseRegionHovered6!
                     ? FlutterFlowTheme.of(context).primaryBackground
                     : FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -468,10 +413,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered7 = true);
+              setState(() => _model.mouseRegionHovered6 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered7 = false);
+              setState(() => _model.mouseRegionHovered6 = false);
             }),
           ),
           MouseRegion(
@@ -498,7 +443,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 curve: Curves.easeInOut,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: _model.mouseRegionHovered8!
+                  color: _model.mouseRegionHovered7!
                       ? FlutterFlowTheme.of(context).primaryBackground
                       : FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -537,10 +482,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered8 = true);
+              setState(() => _model.mouseRegionHovered7 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered8 = false);
+              setState(() => _model.mouseRegionHovered7 = false);
             }),
           ),
           MouseRegion(
@@ -562,7 +507,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 curve: Curves.easeInOut,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: _model.mouseRegionHovered9!
+                  color: _model.mouseRegionHovered8!
                       ? FlutterFlowTheme.of(context).primaryBackground
                       : FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -620,76 +565,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered9 = true);
+              setState(() => _model.mouseRegionHovered8 = true);
             }),
             onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered9 = false);
-            }),
-          ),
-          MouseRegion(
-            opaque: false,
-            cursor: MouseCursor.defer ?? MouseCursor.defer,
-            child: InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                context.pushNamed('login');
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 150),
-                curve: Curves.easeInOut,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: _model.mouseRegionHovered10!
-                      ? FlutterFlowTheme.of(context).primaryBackground
-                      : FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Icon(
-                          Icons.person_rounded,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 20.0,
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Login',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 12.0,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            onEnter: ((event) async {
-              setState(() => _model.mouseRegionHovered10 = true);
-            }),
-            onExit: ((event) async {
-              setState(() => _model.mouseRegionHovered10 = false);
+              setState(() => _model.mouseRegionHovered8 = false);
             }),
           ),
         ],

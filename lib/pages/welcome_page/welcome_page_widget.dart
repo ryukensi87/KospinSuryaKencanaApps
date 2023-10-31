@@ -48,6 +48,8 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -348,6 +350,9 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
                                                       );
                                                     },
                                                   );
+
+                                                  context.pushNamed(
+                                                      'HomePageUser');
                                                 },
                                                 text: 'Next',
                                                 options: FFButtonOptions(

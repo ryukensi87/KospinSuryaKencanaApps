@@ -1,4 +1,4 @@
-import '/component/drawer/drawer_widget.dart';
+import '/component/drawer_user/drawer_user_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -34,18 +34,18 @@ class HomePageUserModel extends FlutterFlowModel<HomePageUserWidget> {
           pageViewController!.page != null
       ? pageViewController!.page!.round()
       : 0;
-  // Model for Drawer component.
-  late DrawerModel drawerModel;
+  // Model for DrawerUser component.
+  late DrawerUserModel drawerUserModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    drawerModel = createModel(context, () => DrawerModel());
+    drawerUserModel = createModel(context, () => DrawerUserModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    drawerModel.dispose();
+    drawerUserModel.dispose();
   }
 
   /// Action blocks are added here.

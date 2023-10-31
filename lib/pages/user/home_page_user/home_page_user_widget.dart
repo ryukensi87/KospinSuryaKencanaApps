@@ -1,4 +1,4 @@
-import '/component/drawer/drawer_widget.dart';
+import '/component/drawer_user/drawer_user_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -32,6 +32,32 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 40.0),
+          end: Offset(0.0, 0.0),
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
+        ),
+      ],
+    ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -84,19 +110,64 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
         ),
       ],
     ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 40.0),
+          end: Offset(0.0, 0.0),
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 40.0),
+          end: Offset(0.0, 0.0),
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
+        ),
+      ],
+    ),
   };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageUserModel());
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -119,6 +190,8 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -137,9 +210,9 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
           child: Drawer(
             elevation: 16.0,
             child: wrapWithModel(
-              model: _model.drawerModel,
+              model: _model.drawerUserModel,
               updateCallback: () => setState(() {}),
-              child: DrawerWidget(),
+              child: DrawerUserWidget(),
             ),
           ),
         ),
@@ -147,7 +220,7 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 15.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 15.0, 15.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -214,10 +287,11 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                   ),
                 ),
               ],
-            ),
+            ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation1']!),
           ),
           actions: [],
           centerTitle: false,
+          toolbarHeight: 70.0,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -417,119 +491,82 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                         ),
                       ),
                     ),
-                  ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation1']!),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 15.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4.0,
-                          color: Color(0x250F1113),
-                          offset: Offset(0.0, 1.0),
-                        )
-                      ],
+                      color: Color(0x00FFFFFF),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 85.0,
+                          Expanded(
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await launchURL(
+                                    'https://www.surya-kencana.com/home.html');
+                              },
+                              child: Container(
+                                width: 150.0,
                                 height: 120.0,
                                 decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/740/600',
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 5.0, 0.0, 5.0),
-                                      child: Text(
-                                        'Company Profil',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Noto Serif',
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                    ),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
                                   ],
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(15.0),
+                                    bottomRight: Radius.circular(0.0),
+                                    topLeft: Radius.circular(15.0),
+                                    topRight: Radius.circular(0.0),
+                                  ),
+                                  shape: BoxShape.rectangle,
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 85.0,
-                                height: 120.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('ProdukPage');
-                                  },
-                                  child: Column(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 0.0, 10.0, 0.0),
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/740/600',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/740/600',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                        ],
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 20.0),
+                                            10.0, 10.0, 0.0, 10.0),
                                         child: Text(
                                           'Produk',
                                           textAlign: TextAlign.center,
@@ -545,49 +582,65 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 85.0,
+                          Expanded(
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('ProdukPage');
+                              },
+                              child: Container(
+                                width: 150.0,
                                 height: 120.0,
                                 decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0.0),
+                                    bottomRight: Radius.circular(15.0),
+                                    topLeft: Radius.circular(0.0),
+                                    topRight: Radius.circular(15.0),
+                                  ),
+                                  shape: BoxShape.rectangle,
                                 ),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await launchURL(
-                                        'https://www.surya-kencana.com/home.html');
-                                  },
-                                  child: Column(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 0.0, 10.0, 0.0),
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/740/600',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/740/600',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                        ],
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 20.0),
+                                            10.0, 10.0, 0.0, 10.0),
                                         child: Text(
                                           'Website',
                                           textAlign: TextAlign.center,
@@ -603,13 +656,13 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation1']!),
+                      animationsMap['containerOnPageLoadAnimation2']!),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -625,7 +678,13 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                           children: [
                             Text(
                               'Brosur',
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                             ),
                             Text(
                               'Lihat Semua ',
@@ -634,7 +693,7 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 12.0,
+                                    fontSize: 14.0,
                                   ),
                             ),
                           ],
@@ -642,7 +701,7 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                       ),
                     ),
                   ],
-                ),
+                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation2']!),
                 Padding(
                   padding:
                       EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
@@ -997,7 +1056,7 @@ class _HomePageUserWidgetState extends State<HomePageUserWidget>
                       ),
                     ),
                   ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation2']!),
+                      animationsMap['containerOnPageLoadAnimation3']!),
                 ),
               ],
             ),
