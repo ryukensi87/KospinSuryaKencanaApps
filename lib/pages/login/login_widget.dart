@@ -66,20 +66,6 @@ class _LoginWidgetState extends State<LoginWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              context.goNamed('HomePageUser');
-            },
-            child: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              size: 24.0,
-            ),
-          ),
           title: Text(
             'Login User',
             style: FlutterFlowTheme.of(context).bodyMedium.override(

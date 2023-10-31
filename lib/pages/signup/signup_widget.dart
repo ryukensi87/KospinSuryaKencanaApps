@@ -76,7 +76,7 @@ class _SignupWidgetState extends State<SignupWidget> {
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              context.goNamed('HomePageUser');
+              context.goNamed('login');
             },
             child: Icon(
               Icons.arrow_back_rounded,
@@ -85,7 +85,7 @@ class _SignupWidgetState extends State<SignupWidget> {
             ),
           ),
           title: Text(
-            'Login User',
+            'Buat Akun Baru',
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Readex Pro',
                   color: FlutterFlowTheme.of(context).secondaryBackground,
