@@ -351,8 +351,7 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
                                                     },
                                                   );
 
-                                                  context.pushNamed(
-                                                      'HomePageUser');
+                                                  context.pushNamed('login');
                                                 },
                                                 text: 'Next',
                                                 options: FFButtonOptions(
