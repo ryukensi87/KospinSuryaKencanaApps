@@ -612,11 +612,11 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/962/600',
+                                          child: Image.asset(
+                                            'assets/images/Promo_Pinjaman.png',
                                             width: 300.0,
                                             height: 200.0,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
@@ -631,7 +631,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(0.00, 0.00),
+                                              AlignmentDirectional(0.00, -1.00),
                                           child: Text(
                                             'Produk',
                                             style: FlutterFlowTheme.of(context)
@@ -668,11 +668,11 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/962/600',
+                                          child: Image.asset(
+                                            'assets/images/Promo_Pinjaman.jpg',
                                             width: 300.0,
                                             height: 200.0,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
@@ -687,7 +687,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                         ),
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(0.00, 0.00),
+                                              AlignmentDirectional(0.00, -1.00),
                                           child: Text(
                                             'Website',
                                             style: FlutterFlowTheme.of(context)
