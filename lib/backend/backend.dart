@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
 import 'schema/userdata_record.dart';
+import 'schema/alamat_kantor_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +15,7 @@ export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
 export 'schema/userdata_record.dart';
+export 'schema/alamat_kantor_record.dart';
 
 /// Functions to query UserdataRecords (as a Stream and as a Future).
 Future<int> queryUserdataRecordCount({
@@ -47,6 +49,43 @@ Future<List<UserdataRecord>> queryUserdataRecordOnce({
     queryCollectionOnce(
       UserdataRecord.collection,
       UserdataRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AlamatKantorRecords (as a Stream and as a Future).
+Future<int> queryAlamatKantorRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AlamatKantorRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AlamatKantorRecord>> queryAlamatKantorRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AlamatKantorRecord.collection,
+      AlamatKantorRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AlamatKantorRecord>> queryAlamatKantorRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AlamatKantorRecord.collection,
+      AlamatKantorRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

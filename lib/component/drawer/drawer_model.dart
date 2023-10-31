@@ -28,6 +28,8 @@ class DrawerModel extends FlutterFlowModel<DrawerWidget> {
   bool mouseRegionHovered8 = false;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered9 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered10 = false;
 
   /// Initialization and disposal methods.
 

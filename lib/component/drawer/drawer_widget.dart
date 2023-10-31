@@ -229,33 +229,43 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Icon(
-                        Icons.location_on,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 20.0,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('AlamatKantorPage');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Lokasi Kantor',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 12.0,
-                                  ),
+                        child: Icon(
+                          Icons.location_on,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 20.0,
                         ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Lokasi Kantor',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 12.0,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -614,6 +624,72 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             }),
             onExit: ((event) async {
               setState(() => _model.mouseRegionHovered9 = false);
+            }),
+          ),
+          MouseRegion(
+            opaque: false,
+            cursor: MouseCursor.defer ?? MouseCursor.defer,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.pushNamed('login');
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 150),
+                curve: Curves.easeInOut,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: _model.mouseRegionHovered10!
+                      ? FlutterFlowTheme.of(context).primaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        child: Icon(
+                          Icons.person_rounded,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 20.0,
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Login',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 12.0,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            onEnter: ((event) async {
+              setState(() => _model.mouseRegionHovered10 = true);
+            }),
+            onExit: ((event) async {
+              setState(() => _model.mouseRegionHovered10 = false);
             }),
           ),
         ],
