@@ -536,7 +536,8 @@ class _SignupWidgetState extends State<SignupWidget> {
                                           _model.usernamecreateController.text,
                                       photoUrl: _model.checkRegister?.photoUrl,
                                       uid: _model.checkRegister?.uid,
-                                      createdTime: getCurrentTimestamp,
+                                      createdTime:
+                                          _model.checkRegister?.createdTime,
                                       phoneNumber:
                                           _model.notlpcreateController.text,
                                       role: _model.checkRegister?.role,
@@ -554,7 +555,8 @@ class _SignupWidgetState extends State<SignupWidget> {
                                               photoUrl: _model
                                                   .checkRegister?.photoUrl,
                                               uid: _model.checkRegister?.uid,
-                                              createdTime: getCurrentTimestamp,
+                                              createdTime: _model
+                                                  .checkRegister?.createdTime,
                                               phoneNumber: _model
                                                   .notlpcreateController.text,
                                               role: _model.checkRegister?.role,

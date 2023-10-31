@@ -7,6 +7,6 @@ export '/pages/profil_page/profil_page_widget.dart' show ProfilPageWidget;
 export '/pages/welcome_page/welcome_page_widget.dart' show WelcomePageWidget;
 export '/pages/user/home_page_user/home_page_user_widget.dart'
     show HomePageUserWidget;
+export '/pages/signup/signup_widget.dart' show SignupWidget;
 export '/pages/admin/home_page_admin/home_page_admin_widget.dart'
     show HomePageAdminWidget;
-export '/pages/signup/signup_widget.dart' show SignupWidget;

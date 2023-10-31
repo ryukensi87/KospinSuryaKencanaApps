@@ -333,7 +333,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   10.0, 10.0, 10.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await queryUserdataRecordOnce(
+                                  _model.queryLogin =
+                                      await queryUserdataRecordOnce(
                                     queryBuilder: (userdataRecord) =>
                                         userdataRecord
                                             .where(
@@ -348,10 +349,99 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             ),
                                     singleRecord: true,
                                   ).then((s) => s.firstOrNull);
-                                  if (!((FFAppState().noTlp ==
+                                  if ((_model.queryLogin?.phoneNumber ==
                                           _model.nomortlpController.text) &&
                                       (FFAppState().password ==
-                                          FFAppState().password))) {
+                                          FFAppState().password)) {
+                                    if (_model.queryLogin?.role == 'admin') {
+                                      setState(() {
+                                        FFAppState().isLogin = true;
+                                        FFAppState().isAdmin = true;
+                                        FFAppState().noTlp =
+                                            _model.nomortlpController.text;
+                                        FFAppState().password =
+                                            _model.passwordController.text;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Login success! Welcome Admin${_model.queryLogin?.displayName}',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+
+                                      context.pushNamed('HomePageAdmin');
+                                    } else if (_model.queryLogin?.role ==
+                                        'member') {
+                                      setState(() {
+                                        FFAppState().isLogin = true;
+                                        FFAppState().isAdmin = true;
+                                        FFAppState().noTlp =
+                                            _model.nomortlpController.text;
+                                        FFAppState().password =
+                                            _model.passwordController.text;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Login success! Welcome User${_model.queryLogin?.displayName}',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+
+                                      context.pushNamed('HomePageUser');
+                                    } else {
+                                      setState(() {
+                                        FFAppState().isLogin = true;
+                                        FFAppState().noTlp =
+                                            _model.nomortlpController.text;
+                                        FFAppState().password =
+                                            _model.passwordController.text;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Login Success! Welcome ${_model.queryLogin?.displayName}',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+
+                                      context.pushNamed('HomePageUser');
+                                    }
+                                  } else {
                                     setState(() {
                                       FFAppState().noTlp = '';
                                       FFAppState().password = '';
@@ -372,6 +462,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       ),
                                     );
                                   }
+
+                                  setState(() {});
                                 },
                                 text: 'Masuk',
                                 options: FFButtonOptions(

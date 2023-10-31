@@ -1,4 +1,5 @@
-import '/component/drawer_user/drawer_user_widget.dart';
+import '/backend/backend.dart';
+import '/component/drawer_admin/drawer_admin_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -32,6 +33,32 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 40.0),
+          end: Offset(0.0, 0.0),
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
+        ),
+      ],
+    ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -84,19 +111,64 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
         ),
       ],
     ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 40.0),
+          end: Offset(0.0, 0.0),
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 40.0),
+          end: Offset(0.0, 0.0),
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
+        ),
+      ],
+    ),
   };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageAdminModel());
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -139,9 +211,9 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
           child: Drawer(
             elevation: 16.0,
             child: wrapWithModel(
-              model: _model.drawerUserModel,
+              model: _model.drawerAdminModel,
               updateCallback: () => setState(() {}),
-              child: DrawerUserWidget(),
+              child: DrawerAdminWidget(),
             ),
           ),
         ),
@@ -149,7 +221,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 15.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 15.0, 15.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -194,7 +266,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Selamat Datang di',
+                        'Selamat Datang',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: FlutterFlowTheme.of(context)
@@ -202,24 +274,58 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                               fontSize: 12.0,
                             ),
                       ),
-                      Text(
-                        'Kospin Surya Kencana',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      StreamBuilder<List<UserdataRecord>>(
+                        stream: queryUserdataRecord(
+                          singleRecord: true,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<UserdataRecord> textUserdataRecordList =
+                              snapshot.data!;
+                          // Return an empty Container when the item does not exist.
+                          if (snapshot.data!.isEmpty) {
+                            return Container();
+                          }
+                          final textUserdataRecord =
+                              textUserdataRecordList.isNotEmpty
+                                  ? textUserdataRecordList.first
+                                  : null;
+                          return Text(
+                            textUserdataRecord!.displayName,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          );
+                        },
                       ),
                     ],
                   ),
                 ),
               ],
-            ),
+            ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation1']!),
           ),
           actions: [],
           centerTitle: false,
+          toolbarHeight: 70.0,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -419,72 +525,175 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                         ),
                       ),
                     ),
-                  ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation1']!),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 15.0),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4.0,
-                          color: Color(0x250F1113),
-                          offset: Offset(0.0, 1.0),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 0.0, 15.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0x00FFFFFF),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                width: 85.0,
-                                height: 120.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    width: 80.0,
+                                    height: 80.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/962/600',
+                                        width: 300.0,
+                                        height: 200.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 5.0, 0.0, 0.0),
+                                    child: Container(
+                                      width: 80.0,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00FFFFFF),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.00, 0.00),
+                                        child: Text(
+                                          'Company Profil',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed('ProdukPage');
+                                },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
+                                          0.0, 0.0, 0.0, 15.0),
                                       child: Container(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        clipBehavior: Clip.antiAlias,
+                                        width: 80.0,
+                                        height: 80.0,
                                         decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                         ),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/740/600',
-                                          fit: BoxFit.cover,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/962/600',
+                                            width: 300.0,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 5.0, 0.0, 5.0),
-                                      child: Text(
-                                        'Company Profil',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Noto Serif',
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                          0.0, 5.0, 0.0, 0.0),
+                                      child: Container(
+                                        width: 80.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(0.00, 0.00),
+                                          child: Text(
+                                            'Produk',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await launchURL(
+                                      'https://www.surya-kencana.com/home.html');
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 15.0),
+                                      child: Container(
+                                        width: 80.0,
+                                        height: 80.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/962/600',
+                                            width: 300.0,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 5.0, 0.0, 0.0),
+                                      child: Container(
+                                        width: 80.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(0.00, 0.00),
+                                          child: Text(
+                                            'Website',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -492,126 +701,11 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                               ),
                             ],
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 85.0,
-                                height: 120.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('ProdukPage');
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/740/600',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 20.0),
-                                        child: Text(
-                                          'Produk',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Noto Serif',
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 85.0,
-                                height: 120.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await launchURL(
-                                        'https://www.surya-kencana.com/home.html');
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/740/600',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 20.0),
-                                        child: Text(
-                                          'Website',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Noto Serif',
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation2']!),
                       ),
                     ),
-                  ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation1']!),
+                  ],
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -627,7 +721,13 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                           children: [
                             Text(
                               'Brosur',
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                             ),
                             Text(
                               'Lihat Semua ',
@@ -636,7 +736,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 12.0,
+                                    fontSize: 14.0,
                                   ),
                             ),
                           ],
@@ -644,7 +744,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                       ),
                     ),
                   ],
-                ),
+                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation2']!),
                 Padding(
                   padding:
                       EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
@@ -726,14 +826,14 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                                       fit: BoxFit.contain,
                                                     ),
                                                     allowRotation: false,
-                                                    tag: 'imageTag4',
+                                                    tag: 'imageTag7',
                                                     useHeroAnimation: true,
                                                   ),
                                                 ),
                                               );
                                             },
                                             child: Hero(
-                                              tag: 'imageTag4',
+                                              tag: 'imageTag7',
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
@@ -798,14 +898,14 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                                       fit: BoxFit.contain,
                                                     ),
                                                     allowRotation: false,
-                                                    tag: 'imageTag5',
+                                                    tag: 'imageTag8',
                                                     useHeroAnimation: true,
                                                   ),
                                                 ),
                                               );
                                             },
                                             child: Hero(
-                                              tag: 'imageTag5',
+                                              tag: 'imageTag8',
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
@@ -870,14 +970,14 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                                       fit: BoxFit.contain,
                                                     ),
                                                     allowRotation: false,
-                                                    tag: 'imageTag6',
+                                                    tag: 'imageTag9',
                                                     useHeroAnimation: true,
                                                   ),
                                                 ),
                                               );
                                             },
                                             child: Hero(
-                                              tag: 'imageTag6',
+                                              tag: 'imageTag9',
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
@@ -934,14 +1034,14 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                                                     fit: BoxFit.contain,
                                                   ),
                                                   allowRotation: false,
-                                                  tag: 'imageTag7',
+                                                  tag: 'imageTag10',
                                                   useHeroAnimation: true,
                                                 ),
                                               ),
                                             );
                                           },
                                           child: Hero(
-                                            tag: 'imageTag7',
+                                            tag: 'imageTag10',
                                             transitionOnUserGestures: true,
                                             child: ClipRRect(
                                               borderRadius:
@@ -999,7 +1099,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                       ),
                     ),
                   ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation2']!),
+                      animationsMap['containerOnPageLoadAnimation3']!),
                 ),
               ],
             ),

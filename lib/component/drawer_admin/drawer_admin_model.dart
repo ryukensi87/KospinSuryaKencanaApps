@@ -1,6 +1,10 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'drawer_admin_widget.dart' show DrawerAdminWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +34,8 @@ class DrawerAdminModel extends FlutterFlowModel<DrawerAdminWidget> {
   bool mouseRegionHovered9 = false;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered10 = false;
+  // Stores action output result for [Firestore Query - Query a collection] action in replaceWidget widget.
+  UserdataRecord? logout;
 
   /// Initialization and disposal methods.
 

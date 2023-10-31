@@ -1,5 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -631,50 +635,80 @@ class _DrawerAdminWidgetState extends State<DrawerAdminWidget> {
           MouseRegion(
             opaque: false,
             cursor: MouseCursor.defer ?? MouseCursor.defer,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 150),
-              curve: Curves.easeInOut,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: _model.mouseRegionHovered10!
-                    ? FlutterFlowTheme.of(context).primaryBackground
-                    : FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Icon(
-                        Icons.person_rounded,
-                        color: FlutterFlowTheme.of(context).primary,
-                        size: 20.0,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                _model.logout = await queryUserdataRecordOnce(
+                  singleRecord: true,
+                ).then((s) => s.firstOrNull);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Terima kasih telah login${_model.logout?.displayName}',
+                      style: TextStyle(
+                        color: FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Logout',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  fontSize: 12.0,
-                                ),
-                          ),
-                        ],
+                    duration: Duration(milliseconds: 4000),
+                    backgroundColor: FlutterFlowTheme.of(context).secondary,
+                  ),
+                );
+                GoRouter.of(context).prepareAuthEvent();
+                await authManager.signOut();
+                GoRouter.of(context).clearRedirectLocation();
+
+                context.goNamedAuth('WelcomePage', context.mounted);
+
+                setState(() {});
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 150),
+                curve: Curves.easeInOut,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: _model.mouseRegionHovered10!
+                      ? FlutterFlowTheme.of(context).primaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        child: Icon(
+                          Icons.person_rounded,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 20.0,
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Logout',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 12.0,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

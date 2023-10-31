@@ -120,14 +120,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => HomePageUserWidget(),
         ),
         FFRoute(
-          name: 'HomePageAdmin',
-          path: '/homePageAdmin',
-          builder: (context, params) => HomePageAdminWidget(),
-        ),
-        FFRoute(
           name: 'Signup',
           path: '/signup',
           builder: (context, params) => SignupWidget(),
+        ),
+        FFRoute(
+          name: 'HomePageAdmin',
+          path: '/homePageAdmin',
+          builder: (context, params) => HomePageAdminWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

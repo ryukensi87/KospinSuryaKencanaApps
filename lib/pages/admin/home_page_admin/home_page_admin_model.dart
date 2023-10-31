@@ -1,4 +1,5 @@
-import '/component/drawer_user/drawer_user_widget.dart';
+import '/backend/backend.dart';
+import '/component/drawer_admin/drawer_admin_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -34,18 +35,18 @@ class HomePageAdminModel extends FlutterFlowModel<HomePageAdminWidget> {
           pageViewController!.page != null
       ? pageViewController!.page!.round()
       : 0;
-  // Model for DrawerUser component.
-  late DrawerUserModel drawerUserModel;
+  // Model for DrawerAdmin component.
+  late DrawerAdminModel drawerAdminModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    drawerUserModel = createModel(context, () => DrawerUserModel());
+    drawerAdminModel = createModel(context, () => DrawerAdminModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    drawerUserModel.dispose();
+    drawerAdminModel.dispose();
   }
 
   /// Action blocks are added here.
