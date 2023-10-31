@@ -82,13 +82,21 @@ class _AlamatKantorPageWidgetState extends State<AlamatKantorPageWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Alamat Kantor',
+                      'Alamat Kantor ',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    Text(
+                      'KOSPIN SURYA KENCANA',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                           ),
                     ),
                   ],
