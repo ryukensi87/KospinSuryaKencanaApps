@@ -534,7 +534,7 @@ class _HomePageAdminWidgetState extends State<HomePageAdminWidget>
                     Expanded(
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            15.0, 0.0, 15.0, 0.0),
+                            15.0, 10.0, 15.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
