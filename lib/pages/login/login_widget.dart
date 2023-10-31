@@ -56,12 +56,17 @@ class _LoginWidgetState extends State<LoginWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
+          leading: Icon(
+            Icons.arrow_back_rounded,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            size: 24.0,
+          ),
           title: Text(
-            'Page Title',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  color: Colors.white,
-                  fontSize: 22.0,
+            'Login',
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Readex Pro',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontSize: 25.0,
                 ),
           ),
           actions: [],

@@ -84,14 +84,16 @@ class _ProfilPageWidgetState extends State<ProfilPageWidget> {
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(75.0),
-                                  child: Image.network(
-                                    currentUserPhoto,
-                                    width: 125.0,
-                                    height: 125.0,
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment(0.00, 0.00),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => ClipRRect(
+                                    borderRadius: BorderRadius.circular(75.0),
+                                    child: Image.network(
+                                      currentUserPhoto,
+                                      width: 125.0,
+                                      height: 125.0,
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment(0.00, 0.00),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -101,10 +103,12 @@ class _ProfilPageWidgetState extends State<ProfilPageWidget> {
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
-                                child: Text(
-                                  currentUserDisplayName,
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => Text(
+                                    currentUserDisplayName,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
                                 ),
                               ),
                             ),
@@ -290,14 +294,18 @@ class _ProfilPageWidgetState extends State<ProfilPageWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           20.0, 5.0, 0.0, 5.0),
-                                                  child: Text(
-                                                    currentUserDisplayName
-                                                        .maybeHandleOverflow(
-                                                            maxChars: 50),
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
+                                                  child: AuthUserStreamWidget(
+                                                    builder: (context) => Text(
+                                                      currentUserDisplayName
+                                                          .maybeHandleOverflow(
+                                                              maxChars: 50),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -556,14 +564,16 @@ class _ProfilPageWidgetState extends State<ProfilPageWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         20.0, 5.0, 0.0, 5.0),
-                                                child: Text(
-                                                  currentPhoneNumber
-                                                      .maybeHandleOverflow(
-                                                          maxChars: 13),
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
+                                                child: AuthUserStreamWidget(
+                                                  builder: (context) => Text(
+                                                    currentPhoneNumber
+                                                        .maybeHandleOverflow(
+                                                            maxChars: 13),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
                                                 ),
                                               ),
                                             ),
